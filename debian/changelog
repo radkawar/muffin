@@ -1,3 +1,10 @@
+muffin (6.6.3+lindm.rd.2) zena; urgency=medium
+
+  * Release tracked X11 input and reserved keysyms on virtual device disposal.
+  * Keep synthesized events inside the tracked XTest key and button ranges.
+
+ -- radkawar <radkawar28@gmail.com>  Thu, 15 Oct 2026 19:07:59 +0100
+
 muffin (6.6.3+lindm.rd.1) zena; urgency=medium
 
   * Fork-only native Mint build with the remote desktop backend enabled.
