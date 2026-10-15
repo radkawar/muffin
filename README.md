@@ -5,6 +5,10 @@ backends (`remote_desktop=true`). Applications still obtain user consent through
 the desktop portal; this build option supplies the compositor interfaces used by
 that backend, not a persistent portal permission.
 
+The X11 virtual keyboard accepts evdev keycodes, matching the native backend.
+Smooth scroll deltas accumulate into X11 wheel events instead of being ignored.
+These are the existing Mutter fixes from merge requests !1732 and !1727.
+
 # Mutter
 
 Mutter is a Wayland display server and X11 window manager and compositor library.
