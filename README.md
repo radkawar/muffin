@@ -1,5 +1,10 @@
 Muffin is a fork of Mutter, specifically adapted to work as the window manager for the Cinnamon desktop environment.
 
+The Debian packages enable the existing PipeWire screen cast and remote desktop
+backends (`remote_desktop=true`). Applications still obtain user consent through
+the desktop portal; this build option supplies the compositor interfaces used by
+that backend, not a persistent portal permission.
+
 # Mutter
 
 Mutter is a Wayland display server and X11 window manager and compositor library.
