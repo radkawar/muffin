@@ -57,16 +57,16 @@ fake_key_event (ClutterVirtualInputDevice *virtual_device,
   MetaVirtualInputDeviceX11 *virtual_x11 =
     META_VIRTUAL_INPUT_DEVICE_X11 (virtual_device);
 
+  if (keycode < 8 || keycode >= G_N_ELEMENTS (virtual_x11->key_state))
+    return;
+
   XTestFakeKeyEvent (clutter_x11_get_default_display (),
                      keycode, pressed, 0);
 
-  if (keycode >= 8 && keycode < G_N_ELEMENTS (virtual_x11->key_state))
-    {
-      if (pressed)
-        virtual_x11->key_state[keycode] |= KEY_PRESSED;
-      else
-        virtual_x11->key_state[keycode] &= ~KEY_PRESSED;
-    }
+  if (pressed)
+    virtual_x11->key_state[keycode] |= KEY_PRESSED;
+  else
+    virtual_x11->key_state[keycode] &= ~KEY_PRESSED;
 }
 
 static void
@@ -103,12 +103,14 @@ meta_virtual_input_device_x11_notify_button (ClutterVirtualInputDevice *virtual_
   MetaVirtualInputDeviceX11 *virtual_x11 =
     META_VIRTUAL_INPUT_DEVICE_X11 (virtual_device);
 
+  if (button == 0 || button >= G_N_ELEMENTS (virtual_x11->button_state))
+    return;
+
   XTestFakeButtonEvent (clutter_x11_get_default_display (),
                         button, button_state == CLUTTER_BUTTON_STATE_PRESSED, 0);
 
-  if (button > 0 && button < G_N_ELEMENTS (virtual_x11->button_state))
-    virtual_x11->button_state[button] =
-      button_state == CLUTTER_BUTTON_STATE_PRESSED;
+  virtual_x11->button_state[button] =
+    button_state == CLUTTER_BUTTON_STATE_PRESSED;
 }
 
 static void
